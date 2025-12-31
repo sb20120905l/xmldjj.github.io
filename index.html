@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>东方树叶祝你2026年快乐</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    
+    <!-- Tailwind配置 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3B82F6',
+                        secondary: '#EC4899',
+                        accent: '#F59E0B',
+                        brand: '#4CAF50', // 东方树叶品牌色
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            }
+            .text-shadow-lg {
+                text-shadow: 0 4px 8px rgba(0,0,0,0.7);
+            }
+            .animate-float {
+                animation: float 6s ease-in-out infinite;
+            }
+            .animate-pulse-slow {
+                animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+            }
+            .animate-countdown {
+                animation: countdown 1s ease-in-out forwards;
+            }
+            .animate-welcome {
+                animation: welcome 3s ease-out forwards;
+            }
+            .animate-brand {
+                animation: brand 4s ease-out forwards;
+            }
+            .animate-text-glow {
+                animation: textGlow 2s ease-in-out infinite alternate;
+            }
+            @keyframes float {
+                0%, 100% { transform: translateY(0); }
+                50% { transform: translateY(-10px); }
+            }
+            @keyframes countdown {
+                0% { transform: scale(1); opacity: 1; }
+                50% { transform: scale(1.5); opacity: 0.8; }
+                100% { transform: scale(1); opacity: 1; }
+            }
+            @keyframes welcome {
+                0% { 
+                    transform: translateY(100px) scale(0.8); 
+                    opacity: 0; 
+                    text-shadow: 0 0 20px rgba(255,255,255,0.1);
+                }
+                50% {
+                    transform: translateY(-20px) scale(1.1);
+                    opacity: 0.9;
+                    text-shadow: 0 0 30px rgba(255,255,255,0.5);
+                }
+                100% { 
+                    transform: translateY(0) scale(1); 
+                    opacity: 1;
+                    text-shadow: 0 0 40px rgba(255,255,255,0.8);
+                }
+            }
+            @keyframes brand {
+                0% { 
+                    transform: translateX(-100px); 
+                    opacity: 0;
+                }
+                100% { 
+                    transform: translateX(0); 
+                    opacity: 1;
+                }
+            }
+            @keyframes textGlow {
+                0% {
+                    text-shadow: 0 0 10px rgba(255,255,255,0.5), 0 0 20px rgba(255,255,255,0.3);
+                }
+                100% {
+                    text-shadow: 0 0 20px rgba(255,255,255,0.8), 0 0 30px rgba(255,255,255,0.5);
+                }
+            }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-b from-gray-900 to-black min-h-screen overflow-hidden">
+    <!-- 倒计时容器 -->
+    <div id="countdown-container" class="fixed inset-0 flex flex-col items-center justify-center z-50 transition-opacity duration-1000">
+        <h1 class="text-[clamp(2rem,8vw,5rem)] font-bold text-white text-shadow-lg mb-8">
+            <span class="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-pink-500">
+                2026跨年盛典
+            </span>
+        </h1>
+        <div id="countdown" class="text-[clamp(4rem,15vw,10rem)] font-bold text-white text-shadow-lg animate-pulse-slow">
+            5
+        </div>
+        <p class="mt-8 text-xl text-blue-200 text-shadow animate-float">
+            准备迎接新年的到来...
+        </p>
+    </div>
+
+    <!-- 欢迎信息 -->
+    <div id="welcome-container" class="fixed inset-0 flex items-center justify-center z-40 opacity-0 pointer-events-none transition-all duration-3000">
+        <h1 id="welcome-text" class="text-[clamp(3rem,12vw,8rem)] font-bold text-shadow-lg animate-welcome">
+            <span class="bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-600 animate-text-glow">
+                欢迎来到 2026
+            </span>
+        </h1>
+    </div>
+
+    <!-- 品牌祝福 -->
+    <div id="brand-container" class="fixed bottom-8 left-8 z-40 opacity-0 pointer-events-none transition-opacity duration-2000">
+        <div class="bg-white/10 backdrop-blur-md rounded-full px-6 py-3 flex items-center space-x-3 animate-brand">
+            <div class="w-10 h-10 bg-brand rounded-full flex items-center justify-center">
+                <i class="fa fa-leaf text-white text-xl"></i>
+            </div>
+            <p class="text-white text-lg font-medium">
+                东方树叶祝你2026年快乐
+            </p>
+        </div>
+    </div>
+
+    <!-- 烟花Canvas -->
+    <canvas id="fireworksCanvas" class="fixed inset-0 w-full h-full z-10"></canvas>
+    
+    <!-- 背景装饰 -->
+    <div class="fixed inset-0 overflow-hidden z-0">
+        <div class="absolute top-0 left-0 w-full h-full opacity-20">
+            <div class="absolute w-1 h-1 bg-blue-500 rounded-full" style="top: 10%; left: 20%;"></div>
+            <div class="absolute w-1 h-1 bg-pink-500 rounded-full" style="top: 20%; left: 40%;"></div>
+            <div class="absolute w-1 h-1 bg-yellow-500 rounded-full" style="top: 30%; left: 60%;"></div>
+            <div class="absolute w-1 h-1 bg-green-500 rounded-full" style="top: 40%; left: 80%;"></div>
+            <div class="absolute w-1 h-1 bg-purple-500 rounded-full" style="top: 50%; left: 10%;"></div>
+            <div class="absolute w-1 h-1 bg-red-500 rounded-full" style="top: 60%; left: 30%;"></div>
+            <div class="absolute w-1 h-1 bg-cyan-500 rounded-full" style="top: 70%; left: 50%;"></div>
+            <div class="absolute w-1 h-1 bg-orange-500 rounded-full" style="top: 80%; left: 70%;"></div>
+            <div class="absolute w-1 h-1 bg-indigo-500 rounded-full" style="top: 90%; left: 90%;"></div>
+        </div>
+    </div>
+
+    <!-- 控制按钮 -->
+    <div class="fixed bottom-6 right-6 z-30 flex flex-col gap-4">
+        <button id="restartBtn" class="bg-blue-500 hover:bg-blue-600 text-white p-3 rounded-full shadow-lg transition-all duration-300 transform hover:scale-110">
+            <i class="fa fa-refresh text-xl"></i>
+        </button>
+        <button id="soundBtn" class="bg-pink-500 hover:bg-pink-600 text-white p-3 rounded-full shadow-lg transition-all duration-300 transform hover:scale-110">
+            <i class="fa fa-volume-up text-xl"></i>
+        </button>
+    </div>
+
+    <!-- 移动端提示 -->
+    <div class="fixed bottom-6 left-6 z-30 hidden md:block">
+        <div class="bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm">
+            <i class="fa fa-mouse-pointer mr-2"></i>点击屏幕发射烟花
+        </div>
+    </div>
+
+    <script>
+        // 等待DOM加载完成
+        document.addEventListener('DOMContentLoaded', () => {
+            // 获取DOM元素
+            const countdownContainer = document.getElementById('countdown-container');
+            const countdownEl = document.getElementById('countdown');
+            const welcomeContainer = document.getElementById('welcome-container');
+            const welcomeText = document.getElementById('welcome-text');
+            const brandContainer = document.getElementById('brand-container');
+            const canvas = document.getElementById('fireworksCanvas');
+            const ctx = canvas.getContext('2d');
+            const restartBtn = document.getElementById('restartBtn');
+            const soundBtn = document.getElementById('soundBtn');
+            
+            // 设置Canvas尺寸
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+            
+            // 粒子类
+            class Particle {
+                constructor(x, y, color, type = 'firework') {
+                    this.x = x;
+                    this.y = y;
+                    this.speed = {
+                        x: (Math.random() - 0.5) * 8,
+                        y: (Math.random() - 0.5) * 8
+                    };
+                    this.gravity = 0.05;
+                    this.alpha = 1;
+                    this.decay = Math.random() * 0.01 + 0.005;
+                    this.color = color;
+                    this.radius = Math.random() * 2 + 1;
+                    this.type = type; // 'firework', 'spark', 'text'
+                    
+                    // 针对不同类型的粒子设置不同的属性
+                    if (type === 'spark') {
+                        this.speed.y = Math.random() * -3 - 2;
+                        this.speed.x = (Math.random() - 0.5) * 4;
+                        this.radius = Math.random() * 1.5 + 0.5;
+                    } else if (type === 'text') {
+                        // 文字粒子有不同的行为
+                        this.speed.y = Math.random() * -1 - 0.5;
+                        this.speed.x = (Math.random() - 0.5) * 1;
+                        this.radius = Math.random() * 1.5 + 0.5;
+                        this.decay = 0.005;
+                    }
+                }
+                
+                update() {
+                    // 应用重力
+                    this.speed.y += this.gravity;
+                    
+                    // 更新位置
+                    this.x += this.speed.x;
+                    this.y += this.speed.y;
+                    
+                    // 减少透明度
+                    this.alpha -= this.decay;
+                }
+                
+                draw() {
+                    ctx.save();
+                    ctx.globalAlpha = this.alpha;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                    ctx.fillStyle = this.color;
+                    ctx.fill();
+                    ctx.restore();
+                }
+            }
+            
+            // 烟花类
+            class Firework {
+                constructor(x = null, y = null) {
+                    // 如果没有提供位置，随机生成
+                    this.x = x || Math.random() * canvas.width;
+                    this.y = canvas.height;
+                    this.targetY = Math.random() * canvas.height / 2;
+                    this.speed = Math.random() * 3 + 2;
+                    this.particles = [];
+                    this.exploded = false;
+                    this.color = this.getRandomColor();
+                    this.trail = []; // 用于存储烟花轨迹粒子
+                }
+                
+                getRandomColor() {
+                    const colors = [
+                        '#FF5252', '#FF4081', '#E040FB', '#7C4DFF', '#536DFE',
+                        '#448AFF', '#40C4FF', '#18FFFF', '#64FFDA', '#69F0AE',
+                        '#B2FF59', '#EEFF41', '#FFFF00', '#FFD740', '#FFAB40'
+                    ];
+                    return colors[Math.floor(Math.random() * colors.length)];
+                }
+                
+                update() {
+                    if (!this.exploded) {
+                        // 移动烟花到目标位置
+                        this.y -= this.speed;
+                        
+                        // 创建轨迹粒子
+                        this.trail.push(new Particle(this.x, this.y, this.color, 'spark'));
+                        
+                        // 限制轨迹长度
+                        if (this.trail.length > 20) {
+                            this.trail.shift();
+                        }
+                        
+                        // 检查是否到达目标位置
+                        if (this.y <= this.targetY) {
+                            this.explode();
+                        }
+                    } else {
+                        // 更新爆炸后的粒子
+                        for (let i = this.particles.length - 1; i >= 0; i--) {
+                            this.particles[i].update();
+                            
+                            // 移除透明度低于0的粒子
+                            if (this.particles[i].alpha <= 0) {
+                                this.particles.splice(i, 1);
+                            }
+                        }
+                        
+                        // 更新轨迹粒子
+                        for (let i = this.trail.length - 1; i >= 0; i--) {
+                            this.trail[i].update();
+                            
+                            if (this.trail[i].alpha <= 0) {
+                                this.trail.splice(i, 1);
+                            }
+                        }
+                    }
+                }
+                
+                explode() {
+                    this.exploded = true;
+                    const particleCount = Math.floor(Math.random() * 100) + 100;
+                    
+                    // 创建爆炸粒子
+                    for (let i = 0; i < particleCount; i++) {
+                        this.particles.push(new Particle(this.x, this.y, this.color));
+                    }
+                    
+                    // 创建中心火花
+                    for (let i = 0; i < 20; i++) {
+                        this.particles.push(new Particle(
+                            this.x, 
+                            this.y, 
+                            'white', 
+                            'spark'
+                        ));
+                    }
+                    
+                    // 如果欢迎信息已经显示，在爆炸中心创建文字粒子
+                    if (animation.welcomeShown) {
+                        this.createTextParticles();
+                    }
+                }
+                
+                // 创建文字粒子效果
+                createTextParticles() {
+                    const textParticleCount = 30;
+                    const baseColor = this.color.replace('rgb', 'rgba').replace(')', ', 0.8)');
+                    
+                    for (let i = 0; i < textParticleCount; i++) {
+                        const particle = new Particle(this.x, this.y, baseColor, 'text');
+                        // 让文字粒子向中心聚集的趋势
+                        const angle = Math.atan2(canvas.height/2 - this.y, canvas.width/2 - this.x);
+                        particle.speed.x += Math.cos(angle) * 0.5;
+                        particle.speed.y += Math.sin(angle) * 0.5;
+                        
+                        this.particles.push(particle);
+                    }
+                }
+                
+                draw() {
+                    if (!this.exploded) {
+                        // 绘制烟花主体
+                        ctx.beginPath();
+                        ctx.arc(this.x, this.y, 3, 0, Math.PI * 2);
+                        ctx.fillStyle = this.color;
+                        ctx.fill();
+                        
+                        // 绘制光晕
+                        ctx.beginPath();
+                        ctx.arc(this.x, this.y, 6, 0, Math.PI * 2);
+                        ctx.fillStyle = `${this.color}40`;
+                        ctx.fill();
+                    } else {
+                        // 绘制爆炸粒子
+                        this.particles.forEach(particle => {
+                            particle.draw();
+                        });
+                    }
+                    
+                    // 绘制轨迹
+                    this.trail.forEach(spark => {
+                        spark.draw();
+                    });
+                }
+            }
+            
+            // 动画系统
+            const animation = {
+                fireworks: [],
+                sparks: [],
+                frameCount: 0,
+                isRunning: false,
+                welcomeShown: false,
+                brandShown: false,
+                fireworkCount: 0,
+                
+                // 初始化
+                init() {
+                    this.isRunning = true;
+                    this.welcomeShown = false;
+                    this.brandShown = false;
+                    this.fireworkCount = 0;
+                    this.animate();
+                },
+                
+                // 添加烟花
+                addFirework(x = null, y = null) {
+                    this.fireworks.push(new Firework(x, y));
+                    this.fireworkCount++;
+                },
+                
+                // 动画循环
+                animate() {
+                    if (!this.isRunning) return;
+                    
+                    // 半透明黑色背景，创建拖尾效果
+                    ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    
+                    // 更新和绘制烟花
+                    for (let i = this.fireworks.length - 1; i >= 0; i--) {
+                        const firework = this.fireworks[i];
+                        firework.update();
+                        firework.draw();
+                        
+                        // 移除已完成的烟花
+                        if (firework.exploded && firework.particles.length === 0 && firework.trail.length === 0) {
+                            this.fireworks.splice(i, 1);
+                        }
+                    }
+                    
+                    // 定期自动添加烟花
+                    this.frameCount++;
+                    if (this.frameCount % 60 === 0) { // 每秒添加一个
+                        this.addFirework();
+                    }
+                    
+                    // 当烟花数量达到一定阈值时显示欢迎信息
+                    if (this.fireworkCount > 15 && !this.welcomeShown) {
+                        this.showWelcome();
+                    }
+                    
+                    // 欢迎信息显示后3秒显示品牌祝福
+                    if (this.welcomeShown && !this.brandShown && this.frameCount % 60 > 3) {
+                        this.showBrand();
+                    }
+                    
+                    requestAnimationFrame(() => this.animate());
+                },
+                
+                // 显示欢迎信息
+                showWelcome() {
+                    this.welcomeShown = true;
+                    welcomeContainer.style.opacity = '1';
+                    welcomeContainer.style.pointerEvents = 'auto';
+                    
+                    // 改变欢迎文字颜色以匹配最新的烟花颜色
+                    if (this.fireworks.length > 0) {
+                        const lastFirework = this.fireworks[this.fireworks.length - 1];
+                        if (lastFirework.color) {
+                            welcomeText.style.background = `radial-gradient(circle, ${lastFirework.color} 0%, rgba(255,255,255,0.8) 100%)`;
+                            welcomeText.style.webkitBackgroundClip = 'text';
+                            welcomeText.style.backgroundClip = 'text';
+                        }
+                    }
+                    
+                    // 15秒后淡出欢迎信息
+                    setTimeout(() => {
+                        welcomeContainer.style.opacity = '0';
+                        setTimeout(() => {
+                            welcomeContainer.style.pointerEvents = 'none';
+                        }, 3000);
+                    }, 15000);
+                },
+                
+                // 显示品牌祝福
+                showBrand() {
+                    this.brandShown = true;
+                    brandContainer.style.opacity = '1';
+                    brandContainer.style.pointerEvents = 'auto';
+                    
+                    // 30秒后淡出品牌祝福
+                    setTimeout(() => {
+                        brandContainer.style.opacity = '0';
+                        setTimeout(() => {
+                            brandContainer.style.pointerEvents = 'none';
+                        }, 2000);
+                    }, 30000);
+                },
+                
+                // 停止动画
+                stop() {
+                    this.isRunning = false;
+                },
+                
+                // 重置动画
+                reset() {
+                    this.fireworks = [];
+                    this.sparks = [];
+                    this.frameCount = 0;
+                    this.isRunning = false;
+                    this.welcomeShown = false;
+                    this.brandShown = false;
+                    this.fireworkCount = 0;
+                    welcomeContainer.style.opacity = '0';
+                    welcomeContainer.style.pointerEvents = 'none';
+                    brandContainer.style.opacity = '0';
+                    brandContainer.style.pointerEvents = 'none';
+                }
+            };
+            
+            // 倒计时功能
+            function startCountdown() {
+                let count = 5;
+                
+                // 更新倒计时显示
+                function updateCountdown() {
+                    countdownEl.textContent = count;
+                    countdownEl.classList.add('animate-countdown');
+                    
+                    // 移除动画类以允许下次触发
+                    setTimeout(() => {
+                        countdownEl.classList.remove('animate-countdown');
+                    }, 1000);
+                    
+                    if (count === 0) {
+                        // 倒计时结束，开始烟花表演
+                        startFireworks();
+                        return;
+                    }
+                    
+                    count--;
+                    setTimeout(updateCountdown, 1000);
+                }
+                
+                updateCountdown();
+            }
+            
+            // 开始烟花表演
+            function startFireworks() {
+                // 淡出倒计时
+                countdownContainer.style.opacity = '0';
+                
+                // 延迟后隐藏倒计时容器
+                setTimeout(() => {
+                    countdownContainer.style.display = 'none';
+                    
+                    // 初始化并开始动画
+                    animation.init();
+                    
+                    // 前5秒自动发射更多烟花
+                    let initialFireworks = 0;
+                    const initialInterval = setInterval(() => {
+                        if (initialFireworks < 10) {
+                            animation.addFirework();
+                            initialFireworks++;
+                        } else {
+                            clearInterval(initialInterval);
+                        }
+                    }, 500);
+                }, 1000);
+            }
+            
+            // 重新开始
+            function restart() {
+                // 停止当前动画
+                animation.stop();
+                animation.reset();
+                
+                // 显示倒计时
+                countdownContainer.style.display = 'flex';
+                countdownContainer.style.opacity = '1';
+                
+                // 重新开始倒计时
+                startCountdown();
+            }
+            
+            // 事件监听
+            restartBtn.addEventListener('click', restart);
+            
+            // 点击屏幕添加烟花
+            canvas.addEventListener('click', (e) => {
+                if (animation.isRunning) {
+                    animation.addFirework(e.clientX, e.clientY);
+                }
+            });
+            
+            // 触摸屏幕添加烟花（移动设备）
+            canvas.addEventListener('touchstart', (e) => {
+                if (animation.isRunning && e.touches.length > 0) {
+                    const touch = e.touches[0];
+                    animation.addFirework(touch.clientX, touch.clientY);
+                }
+            });
+            
+            // 声音控制
+            let soundEnabled = true;
+            const audio = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-fireworks-show-2043.mp3');
+            audio.loop = true;
+            
+            soundBtn.addEventListener('click', () => {
+                soundEnabled = !soundEnabled;
+                
+                if (soundEnabled) {
+                    audio.play();
+                    soundBtn.innerHTML = '<i class="fa fa-volume-up text-xl"></i>';
+                } else {
+                    audio.pause();
+                    soundBtn.innerHTML = '<i class="fa fa-volume-off text-xl"></i>';
+                }
+            });
+            
+            // 页面加载完成后开始倒计时
+            startCountdown();
+        });
+    </script>
+</body>
+</html>
