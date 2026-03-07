@@ -1,0 +1,17 @@
+<view class="page">
+  <view class="header animate-fade-down">
+    <text class="title" style="font-size: 40rpx; font-weight: 600;">🎯 全部接单游戏</text>
+  </view>
+  <view class="game-list">
+    <view class="game-card glass-effect animate-fade-up" wx:for="{{games}}" wx:key="id" data-id="{{item.id}}" bindtap="goToDetail">
+      <view class="card-left">
+        <view class="icon-circle">{{item.icon}}</view>
+      </view>
+      <view class="card-right">
+        <view class="game-name">{{item.name}}</view>
+        <view class="game-meta">{{item.desc}} · {{item.price}}</view>
+        <view class="status-badge {{item.statusClass}}">{{item.status}}</view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,98 @@
+.container {
+  height: 100vh;
+  padding-bottom: 20rpx;
+}
+
+/* 状态栏 */
+.status-bar {
+  text-align: center;
+  padding: 30rpx 0;
+  font-size: 36rpx;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 20rpx;
+}
+.status-bar.pending { background-color: #ff9800; }
+.status-bar.accept { background-color: #1677ff; }
+.status-bar.doing { background-color: #00b42a; }
+.status-bar.done { background-color: #999; }
+.status-bar.cancel { background-color: #f53f3f; }
+
+/* 信息卡片 */
+.info-card {
+  background-color: #fff;
+  padding: 20rpx;
+  border-radius: 8rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0,0,0,0.1);
+}
+.info-item {
+  display: flex;
+  margin-bottom: 15rpx;
+}
+.label {
+  width: 120rpx;
+  font-size: 28rpx;
+  color: #666;
+}
+.value {
+  flex: 1;
+  font-size: 28rpx;
+}
+
+/* 套餐卡片 */
+.package-card {
+  background-color: #fff;
+  padding: 20rpx;
+  border-radius: 8rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0,0,0,0.1);
+}
+.package-title {
+  font-size: 30rpx;
+  font-weight: bold;
+  margin-bottom: 20rpx;
+  padding-bottom: 10rpx;
+  border-bottom: 1px solid #eee;
+}
+.package-item {
+  display: flex;
+  margin-bottom: 15rpx;
+}
+
+/* 按钮组 */
+.btn-group {
+  display: flex;
+  gap: 20rpx;
+  padding: 0 20rpx;
+  margin-bottom: 20rpx;
+}
+.cancel-btn {
+  flex: 1;
+  background-color: #fff;
+  color: #f53f3f;
+  border: 1px solid #f53f3f;
+  border-radius: 8rpx;
+  padding: 20rpx 0;
+  font-size: 32rpx;
+}
+.pay-btn {
+  flex: 1;
+  background-color: #1677ff;
+  color: #fff;
+  border: none;
+  border-radius: 8rpx;
+  padding: 20rpx 0;
+  font-size: 32rpx;
+}
+
+/* 联系客服 */
+.contact-btn {
+  margin: 0 20rpx;
+  background-color: #00b42a;
+  color: white;
+  text-align: center;
+  padding: 20rpx 0;
+  border-radius: 8rpx;
+  font-size: 32rpx;
+}

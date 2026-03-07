@@ -1,0 +1,19 @@
+<view class="page">
+  <view class="header animate-fade-down">
+    <text class="title" style="font-size: 40rpx; font-weight: 600;">📋 我的订单</text>
+  </view>
+  <view class="order-list">
+    <view class="order-card glass-effect animate-fade-up" wx:for="{{orders}}" wx:key="id">
+      <view class="order-header">
+        <text class="game-name">{{order.gameName}}</text>
+        <text class="order-status {{order.status === '进行中' ? 'ongoing' : 'completed'}}">{{order.status}}</text>
+      </view>
+      <view class="order-info">
+        <text>打手：{{order.coach}}</text>
+        <text>金额：{{order.amount}}</text>
+      </view>
+      <view class="order-time">{{order.time}}</view>
+      <button class="action-small" wx:if="{{order.status == '进行中'}}" bindtap="contactCoach">联系打手</button>
+    </view>
+  </view>
+</view>

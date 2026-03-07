@@ -1,0 +1,53 @@
+.profile-card {
+  display: flex;
+  align-items: center;
+  background: rgba(20, 30, 45, 0.7);
+  backdrop-filter: blur(20px);
+  border-radius: 40rpx;
+  padding: 40rpx;
+  margin: 30rpx 0 50rpx;
+}
+.avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #2a3a5a, #0e1a2b);
+  border: 4rpx solid #00ffaa;
+  margin-right: 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 60rpx;
+}
+.nickname {
+  font-size: 40rpx;
+  font-weight: 600;
+  display: block;
+}
+.level {
+  font-size: 26rpx;
+  color: #b0c7e7;
+}
+.menu-item {
+  display: flex;
+  align-items: center;
+  background: rgba(30, 40, 55, 0.6);
+  backdrop-filter: blur(8px);
+  border-radius: 30rpx;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+  border: 1rpx solid #2e4a5a;
+}
+.menu-icon {
+  font-size: 40rpx;
+  width: 60rpx;
+  margin-right: 20rpx;
+}
+.menu-text {
+  flex: 1;
+  font-size: 32rpx;
+}
+.arrow {
+  font-size: 40rpx;
+  color: #6a7e9e;
+}

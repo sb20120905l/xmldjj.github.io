@@ -1,0 +1,44 @@
+<scroll-view class="container" scroll-y>
+  <!-- 套餐主图占位 -->
+  <view class="detail-img-placeholder">{{package.tag}}</view>
+
+  <!-- 套餐信息 -->
+  <view class="info">
+    <view class="info-name">{{package.name}}</view>
+    <view class="info-price">¥{{selectedPrice}}</view>
+    <view class="info-desc">{{package.desc}}</view>
+  </view>
+
+  <!-- 规格选择 -->
+  <view class="spec">
+    <view class="spec-title">选择规格</view>
+    <view class="spec-list" wx:for="{{package.specs}}" wx:key="id">
+      <view 
+        class="spec-item {{selectedSpecId == item.id ? 'active' : ''}}"
+        bindtap="selectSpec"
+        data-id="{{item.id}}"
+        data-price="{{item.price}}"
+      >
+        {{item.name}}
+      </view>
+    </view>
+  </view>
+
+  <!-- 游戏账号填写 -->
+  <view class="form">
+    <view class="form-item">
+      <text class="form-label">游戏账号：</text>
+      <input class="form-input" placeholder="请输入游戏账号/ID" bindinput="inputAccount"></input>
+    </view>
+    <view class="form-item">
+      <text class="form-label">备注信息：</text>
+      <input class="form-input" placeholder="特殊要求请备注" bindinput="inputRemark"></input>
+    </view>
+  </view>
+
+  <!-- 底部下单栏 -->
+  <view class="bottom-bar">
+    <button class="cart-btn" bindtap="addToCart">加入购物车</button>
+    <button class="buy-btn" bindtap="buyNow">立即购买</button>
+  </view>
+</scroll-view>

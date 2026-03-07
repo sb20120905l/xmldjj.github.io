@@ -1,0 +1,95 @@
+<view class="page">
+    <view class="header animate-fade-down">
+        <view class="logo-wrapper">
+            <text class="logo-icon">🐟</text>
+            <text class="logo-text">黑鱼电竞</text>
+        </view>
+        <view class="slogan">BLACK FISH ESPORTS</view>
+        <view class="online-badge">
+            <view class="pulse-dot"></view>
+            <text>142 人正在接单</text>
+        </view>
+    </view>
+
+    <view class="range-card animate-fade-up" animation-delay="100ms">
+        <view class="range-title">
+            <text>🎯 接单范围</text>
+            <text class="range-badge">职业陪玩 · 急速上分</text>
+        </view>
+        <view class="tag-group">
+            <view class="game-tag">
+                <text class="tag-icon">🪖</text>
+                <text>和平精英</text>
+            </view>
+            <view class="game-tag">
+                <text class="tag-icon">🔫</text>
+                <text>三角洲行动</text>
+            </view>
+        </view>
+    </view>
+
+    <swiper class="game-swiper" 
+        indicator-dots="{{true}}" 
+        indicator-color="rgba(255,255,255,0.2)" 
+        indicator-active-color="#00ffaa"
+        duration="300" 
+        circular="{{false}}"
+        previous-margin="30rpx"
+        next-margin="30rpx"
+        display-multiple-items="1"
+        style="height: 450rpx;">
+        <swiper-item wx:for="{{games}}" wx:key="id">
+            <view class="game-card glass-effect">
+                <view class="card-left">
+                    <view class="icon-circle" style="background: linear-gradient(145deg, #2a3a5a, #0e1a2b);">
+                        <text>{{item.icon}}</text>
+                    </view>
+                </view>
+                <view class="card-right">
+                    <view class="game-name">{{item.name}}</view>
+                    <view class="game-meta">
+                        <text>{{item.desc}}</text>
+                        <text class="price">{{item.price}}</text>
+                    </view>
+                    <view class="status-row">
+                        <view class="status-badge {{item.statusClass}}">{{item.status}}</view>
+                        <button class="order-btn" hover-class="btn-hover" data-id="{{item.id}}" data-name="{{item.name}}" bindtap="goToDetail">立即接单</button>
+                    </view>
+                </view>
+            </view>
+        </swiper-item>
+    </swiper>
+
+    <view class="features-grid">
+        <view class="feature-item animate-fade-up" animation-delay="200ms">
+            <view class="feature-icon">⚡</view>
+            <text>极速匹配</text>
+        </view>
+        <view class="feature-item animate-fade-up" animation-delay="300ms">
+            <view class="feature-icon">🛡️</view>
+            <text>安全担保</text>
+        </view>
+        <view class="feature-item animate-fade-up" animation-delay="400ms">
+            <view class="feature-icon">🏆</view>
+            <text>王牌导师</text>
+        </view>
+        <view class="feature-item animate-fade-up" animation-delay="500ms">
+            <view class="feature-icon">🎮</view>
+            <text>双游专精</text>
+        </view>
+    </view>
+
+    <view class="action-bar">
+        <button class="action-btn contact" hover-class="btn-hover" bindtap="onContact">
+            <text>💬 联系客服</text>
+        </button>
+        <button class="action-btn book" hover-class="btn-hover" bindtap="onBook">
+            <text>📅 立即预约</text>
+        </button>
+    </view>
+
+    <view class="footer">© 2025 黑鱼电竞 · 巅峰体验</view>
+
+    <!-- 技术支持提示（新增） -->
+    <view class="tech-support {{showTechSupport ? 'show' : ''}}">由东方树叶提供技术支持</view>
+</view>

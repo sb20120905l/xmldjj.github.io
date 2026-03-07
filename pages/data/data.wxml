@@ -1,0 +1,41 @@
+<view class="container">
+  <!-- 筛选栏 -->
+  <view class="filter-bar">
+    <picker mode="selector" range="{{gameTypes}}" bindchange="changeGame">
+      <view class="filter-item">
+        <text>游戏：{{gameTypes[gameIndex]}}</text>
+      </view>
+    </picker>
+  </view>
+
+  <!-- 订单趋势 -->
+  <view class="chart-card">
+    <view class="chart-title">近6个月订单趋势</view>
+    <ec-canvas id="order-chart" canvas-id="order-chart" ec="{{orderEc}}"></ec-canvas>
+  </view>
+
+  <!-- 营收分析 -->
+  <view class="chart-card">
+    <view class="chart-title">近6个月营收分析（元）</view>
+    <ec-canvas id="revenue-chart" canvas-id="revenue-chart" ec="{{revenueEc}}"></ec-canvas>
+  </view>
+
+  <!-- 运营洞察 -->
+  <view class="insight-card">
+    <view class="insight-title">运营大数据洞察</view>
+    <view class="insight-list">
+      <view class="insight-item">
+        <text class="label">订单高峰时段：</text>
+        <text class="value">{{peakHour}}点（{{peakOrder}}单）</text>
+      </view>
+      <view class="insight-item">
+        <text class="label">核心用户画像：</text>
+        <text class="value">{{userPortrait}}</text>
+      </view>
+      <view class="insight-item">
+        <text class="label">高客单价套餐：</text>
+        <text class="value">{{highPriceProduct}}（¥{{highPrice}}）</text>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,48 @@
+.game-list {
+  margin-top: 20rpx;
+}
+.game-card {
+  border-radius: 48rpx;
+  padding: 30rpx 36rpx 30rpx 30rpx;
+  display: flex;
+  gap: 30rpx;
+  margin-bottom: 30rpx;
+  background: rgba(18, 28, 40, 0.8);
+  backdrop-filter: blur(25px);
+  border: 1rpx solid #2e4a5a;
+}
+.card-left .icon-circle {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #2a3a5a, #0e1a2b);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 60rpx;
+  border: 2rpx solid #00ffaa60;
+}
+.card-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.game-name {
+  font-size: 40rpx;
+  font-weight: 700;
+}
+.game-meta {
+  font-size: 28rpx;
+  color: #b0c7e7;
+  margin: 8rpx 0;
+}
+.status-badge {
+  font-size: 26rpx;
+  background: #1a4a3a;
+  padding: 4rpx 20rpx;
+  border-radius: 50rpx;
+  color: #9effb4;
+  border: 1rpx solid #00ffaa;
+  align-self: flex-start;
+}

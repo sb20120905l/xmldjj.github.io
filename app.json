@@ -1,0 +1,42 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/game/list/list",
+    "pages/game/detail/detail",
+    "pages/order/index/index",
+    "pages/user/index/index"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#0b0f17",
+    "navigationBarTitleText": "黑鱼电竞",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#0b0f17",
+    "backgroundTextStyle": "light"
+  },
+  "tabBar": {
+    "color": "#7e8b9f",
+    "selectedColor": "#00ffaa",
+    "backgroundColor": "#0f1420",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/game/list/list",
+        "text": "接单"
+      },
+      {
+        "pagePath": "pages/order/index/index",
+        "text": "订单"
+      },
+      {
+        "pagePath": "pages/user/index/index",
+        "text": "我的"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

@@ -1,0 +1,54 @@
+<scroll-view class="container" scroll-y>
+  <!-- 订单状态 -->
+  <view class="status-bar {{order.statusClass}}">
+    <text class="status-text">{{order.statusText}}</text>
+  </view>
+
+  <!-- 订单信息 -->
+  <view class="info-card">
+    <view class="info-item">
+      <text class="label">订单编号：</text>
+      <text class="value">{{order.id}}</text>
+    </view>
+    <view class="info-item">
+      <text class="label">创建时间：</text>
+      <text class="value">{{order.createTime}}</text>
+    </view>
+    <view class="info-item">
+      <text class="label">游戏账号：</text>
+      <text class="value">{{order.account}}</text>
+    </view>
+    <view class="info-item">
+      <text class="label">备注信息：</text>
+      <text class="value">{{order.remark || "无"}}</text>
+    </view>
+  </view>
+
+  <!-- 套餐信息 -->
+  <view class="package-card">
+    <view class="package-title">套餐信息</view>
+    <view class="package-item">
+      <text class="label">套餐名称：</text>
+      <text class="value">{{order.name}}</text>
+    </view>
+    <view class="package-item">
+      <text class="label">选择规格：</text>
+      <text class="value">{{order.spec}}</text>
+    </view>
+    <view class="package-item">
+      <text class="label">支付金额：</text>
+      <text class="value">¥{{order.price}}</text>
+    </view>
+  </view>
+
+  <!-- 操作按钮（仅待付款显示） -->
+  <view class="btn-group" wx:if="{{order.status == 'pending'}}">
+    <button class="cancel-btn" bindtap="cancelOrder">取消订单</button>
+    <button class="pay-btn" bindtap="payOrder">立即付款</button>
+  </view>
+
+  <!-- 客服入口 -->
+  <view class="contact-btn" bindtap="contactService">
+    <text>联系客服</text>
+  </view>
+</scroll-view>

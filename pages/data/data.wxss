@@ -1,0 +1,66 @@
+.container {
+  padding: 20rpx;
+  padding-bottom: 20rpx;
+}
+
+/* 筛选栏 */
+.filter-bar {
+  background-color: #fff;
+  padding: 15rpx;
+  border-radius: 8rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0,0,0,0.1);
+}
+.filter-item {
+  text-align: center;
+  padding: 10rpx 0;
+  font-size: 28rpx;
+}
+
+/* 图表卡片 */
+.chart-card {
+  background-color: #fff;
+  padding: 20rpx;
+  border-radius: 8rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0,0,0,0.1);
+}
+.chart-title {
+  font-size: 30rpx;
+  font-weight: bold;
+  margin-bottom: 15rpx;
+}
+ec-canvas {
+  width: 100%;
+  height: 400rpx;
+}
+
+/* 运营洞察 */
+.insight-card {
+  background-color: #fff;
+  padding: 20rpx;
+  border-radius: 8rpx;
+  box-shadow: 0 2rpx 10rpx rgba(0,0,0,0.1);
+}
+.insight-title {
+  font-size: 30rpx;
+  font-weight: bold;
+  margin-bottom: 15rpx;
+}
+.insight-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15rpx;
+}
+.insight-item {
+  display: flex;
+  flex-wrap: wrap;
+}
+.label {
+  color: #666;
+  margin-right: 10rpx;
+}
+.value {
+  color: #1677ff;
+  font-weight: 500;
+}

@@ -1,0 +1,33 @@
+/* 全局动画与基础样式 */
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-30rpx); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(40rpx); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulseGlow {
+  0% { box-shadow: 0 0 5px #00ffaa33; }
+  50% { box-shadow: 0 0 20px #00ffaa, 0 0 8px #00ffaa; }
+  100% { box-shadow: 0 0 5px #00ffaa33; }
+}
+.animate-fade-down {
+  animation: fadeDown 0.6s ease forwards;
+}
+.animate-fade-up {
+  opacity: 0;
+  animation: fadeUp 0.6s ease forwards;
+}
+.glass-effect {
+  background: rgba(18, 28, 40, 0.8);
+  backdrop-filter: blur(25px);
+  border: 1rpx solid #2e4a5a;
+}
+.page {
+  min-height: 100vh;
+  background: radial-gradient(circle at 20% 30%, #1a2639, #0b0f17);
+  padding: 30rpx 30rpx 40rpx;
+  color: #ffffff;
+  font-family: 'PingFang SC', 'Helvetica Neue', sans-serif;
+}

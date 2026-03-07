@@ -1,0 +1,36 @@
+<view class="page">
+  <view class="game-header animate-fade-down">
+    <view class="icon-large">{{gameInfo.icon}}</view>
+    <view class="title-area">
+      <text class="game-name">{{gameInfo.name}}</text>
+      <text class="game-desc">{{gameInfo.desc}}</text>
+    </view>
+  </view>
+
+  <view class="price-section animate-fade-up">
+    <text class="section-title">💰 接单价格</text>
+    <view class="price-options">
+      <view class="price-item" wx:for="{{priceOptions}}" wx:key="index" bindtap="selectPrice" data-price="{{item}}">
+        <text>{{item.label}}</text>
+        <text class="price-value">{{item.price}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class="coach-section animate-fade-up" animation-delay="100ms">
+    <text class="section-title">🏅 推荐教练</text>
+    <view class="coach-list">
+      <view class="coach-card" wx:for="{{coaches}}" wx:key="id">
+        <view class="coach-avatar">{{item.avatarEmoji || '👤'}}</view>
+        <view class="coach-info">
+          <text class="coach-name">{{item.name}}</text>
+          <text class="coach-stats">{{item.stats}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="action-bar-fixed">
+    <button class="action-btn book" hover-class="btn-hover" bindtap="placeOrder">立即下单</button>
+  </view>
+</view>
